@@ -25,6 +25,11 @@ with open(f'data/{dataset}/{dataset}.csv', 'w') as csvfile:
     writer.writeheader()
 
     for filename in os.listdir(f'data/{dataset}/img'):
-        datatype, label, img_name = filename.split('_')
+        print(filename)
+        toks = filename.split('_')
+        if len(toks) == 3:
+            datatype, label, filename = toks
+        else:
+            continue
         label = 0 if label == 'good' else 1
         writer.writerow({'image_name': filename, 'label': label, 'type': datatype})
